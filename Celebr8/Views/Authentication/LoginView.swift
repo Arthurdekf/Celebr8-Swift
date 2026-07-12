@@ -94,7 +94,7 @@ struct LoginView: View {
                     )
                     
                     if showsPassword {
-                        Button("Esqueci minha senha") {
+                        Button("Esqueci minha senha?") {
                             Task {
                                 await viewModel.sendPasswordReset()
                             }

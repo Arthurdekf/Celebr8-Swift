@@ -10,18 +10,14 @@ import SwiftUI
 @MainActor
 struct PromoterPlanSheet: View {
     private let onSelectPlan: (PromoterPlan) -> Void
-    private let onCancel: () -> Void
 
     init(
-        onSelectPlan: @escaping (PromoterPlan) -> Void,
-        onCancel: @escaping () -> Void
+        onSelectPlan: @escaping (PromoterPlan) -> Void
     ) {
         self.onSelectPlan = onSelectPlan
-        self.onCancel = onCancel
     }
 
     var body: some View {
-        NavigationStack {
             ScrollView {
                 VStack(spacing: AppSpacing.extraLarge) {
                     Image(
@@ -151,21 +147,10 @@ struct PromoterPlanSheet: View {
                 .padding(.bottom, AppSpacing.small)
                 .background(.ultraThinMaterial)
             }
-            .navigationTitle("Perfil de divulgador")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        onCancel()
-                    } label: {
-                        Image(systemName: "xmark")
-                    }
-                    .accessibilityLabel("Fechar")
-                }
-            }
+            .presentationDragIndicator(.visible)
         }
     }
-}
+
 
 private struct PlanFeature {
     let title: String
@@ -239,7 +224,6 @@ private struct PlanCard: View {
 
 #Preview {
     PromoterPlanSheet(
-        onSelectPlan: { _ in },
-        onCancel: {}
+        onSelectPlan: { _ in }
     )
 }

@@ -14,7 +14,9 @@ struct Celebr8App: App {
     
     var body: some Scene {
         WindowGroup {
-            MainTabView()
+            AuthenticationFlowView { _ in
+                    // Depois conectaremos a autenticação à MainTabView.
+            }
         }
     }
 }

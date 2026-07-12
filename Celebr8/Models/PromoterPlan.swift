@@ -5,7 +5,7 @@
 //  Created by Arthur Fedeli on 11/07/26.
 //
 
-enum PromoterPlan: String, Codable, Sendable {
+enum PromoterPlan: String, Codable, Hashable, Sendable {
     case free
     case pro
 

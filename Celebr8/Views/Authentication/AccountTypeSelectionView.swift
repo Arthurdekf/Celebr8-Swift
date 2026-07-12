@@ -42,7 +42,7 @@ struct AccountTypeSelectionView: View {
                         title: "Participante",
                         description:
                             "Descubra, participe e avalie eventos.",
-                        systemImage: "party.popper",
+                        emoji: "🎉",
                         isSelected:
                             selectedAccountType == .attendee
                     ) {
@@ -55,7 +55,7 @@ struct AccountTypeSelectionView: View {
                         title: "Divulgador",
                         description:
                             "Crie eventos e conecte-se com seu público.",
-                        systemImage: "megaphone",
+                        emoji: "📣",
                         isSelected:
                             selectedAccountType == .promoter
                     ) {
@@ -101,19 +101,20 @@ struct AccountTypeSelectionView: View {
 private struct AccountTypeCard: View {
     let title: String
     let description: String
-    let systemImage: String
+    let emoji: String
     let isSelected: Bool
     let action: () -> Void
 
     var body: some View {
         Button(action: action) {
             HStack(spacing: AppSpacing.medium) {
-                Image(systemName: systemImage)
-                    .font(.title2)
+                Text(emoji)
+                    .font(.largeTitle)
                     .frame(
                         width: AppSpacing.extraSpacious,
                         height: AppSpacing.extraSpacious
                     )
+                    .accessibilityHidden(true)
 
                 VStack(
                     alignment: .leading,
