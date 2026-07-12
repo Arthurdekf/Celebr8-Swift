@@ -6,6 +6,11 @@
 	objectVersion = 110;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		44839A6E3002E82E00E33D88 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 44839A6D3002E82E00E33D88 /* FirebaseAuth */; };
+		44839A703002E82E00E33D88 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 44839A6F3002E82E00E33D88 /* FirebaseFirestore */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		44839A2530019C5100E33D88 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -29,9 +34,22 @@
 		44839A2E30019C5100E33D88 /* Celebr8UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Celebr8UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		44839A5F3001BD0000E33D88 /* Exceptions for "Celebr8" folder in "Celebr8" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 44839A1630019C5000E33D88 /* Celebr8 */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		44839A1930019C5000E33D88 /* Celebr8 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				44839A5F3001BD0000E33D88 /* Exceptions for "Celebr8" folder in "Celebr8" target */,
+			);
 			path = Celebr8;
 			sourceTree = "<group>";
 		};
@@ -51,6 +69,8 @@
 		44839A1430019C5000E33D88 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				44839A6E3002E82E00E33D88 /* FirebaseAuth in Frameworks */,
+				44839A703002E82E00E33D88 /* FirebaseFirestore in Frameworks */,
 			);
 		};
 		44839A2130019C5100E33D88 /* Frameworks */ = {
@@ -103,6 +123,10 @@
 				44839A1930019C5000E33D88 /* Celebr8 */,
 			);
 			name = Celebr8;
+			packageProductDependencies = (
+				44839A6D3002E82E00E33D88 /* FirebaseAuth */,
+				44839A6F3002E82E00E33D88 /* FirebaseFirestore */,
+			);
 			productName = Celebr8;
 			productReference = 44839A1730019C5000E33D88 /* Celebr8.app */;
 			productType = "com.apple.product-type.application";
@@ -181,6 +205,9 @@
 			);
 			mainGroup = 44839A0E30019C5000E33D88;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				44839A6C3002E82E00E33D88 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 44839A1830019C5000E33D88 /* Products */;
 			projectDirPath = "";
@@ -369,8 +396,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = CJLP9VF384;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Celebr8/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -400,8 +429,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = CJLP9VF384;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Celebr8/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -540,6 +571,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		44839A6C3002E82E00E33D88 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.16.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		44839A6D3002E82E00E33D88 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 44839A6C3002E82E00E33D88 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		44839A6F3002E82E00E33D88 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 44839A6C3002E82E00E33D88 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 44839A0F30019C5000E33D88 /* Project object */;
 	validationLevel = 1;

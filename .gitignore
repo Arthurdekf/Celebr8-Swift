@@ -1,0 +1,9 @@
+//
+//  .gitignore
+//  Celebr8
+//
+//  Created by Arthur Fedeli on 11/07/26.
+//
+
+# Firebase local configuration
+Celebr8/GoogleService-Info.plist
