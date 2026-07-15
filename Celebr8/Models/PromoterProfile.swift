@@ -13,6 +13,7 @@ struct PromoterProfile: Identifiable, Codable, Sendable {
     }
 
     let userId: String
+    var plan: PromoterPlan
     var isVerified: Bool
     var followerCount: Int
     var averageRating: Double

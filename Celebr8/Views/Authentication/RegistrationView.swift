@@ -9,110 +9,58 @@ import SwiftUI
 
 @MainActor
 struct RegistrationView: View {
-    @State private var viewModel = RegistrationViewModel()
+    @State private var viewModel: RegistrationViewModel
+    @State private var showsProfile = false
 
-    let onRegistrationCompleted: (AppUser) -> Void
+    private let onRegistrationCompleted: (AppUser) -> Void
 
     init(
+        accountType: AccountType,
+        promoterPlan: PromoterPlan? = nil,
         onRegistrationCompleted: @escaping (AppUser) -> Void = { _ in }
     ) {
+        _viewModel = State(
+            initialValue: RegistrationViewModel(
+                accountType: accountType,
+                promoterPlan: promoterPlan
+            )
+        )
+
         self.onRegistrationCompleted = onRegistrationCompleted
     }
 
     var body: some View {
-        Form {
-            Section {
-                HStack {
-                    Spacer()
-                    BrandLogo(size: 48)
-                    Spacer()
-                }
-                .listRowBackground(Color.clear)
+        RegistrationAccessView(
+            viewModel: viewModel,
+            onContinue: {
+                showsProfile = true
             }
-
-            Section("Perfil") {
-                TextField(
-                    "Nome",
-                    text: $viewModel.displayName
-                )
-                .textContentType(.name)
-
-                TextField(
-                    "Nome de usuário",
-                    text: $viewModel.username
-                )
-                .textInputAutocapitalization(.never)
-                .autocorrectionDisabled()
-            }
-
-            Section {
-                TextField(
-                    "E-mail",
-                    text: $viewModel.email
-                )
-                .textContentType(.emailAddress)
-                .keyboardType(.emailAddress)
-                .textInputAutocapitalization(.never)
-                .autocorrectionDisabled()
-
-                SecureField(
-                    "Senha",
-                    text: $viewModel.password
-                )
-                .textContentType(.newPassword)
-
-                SecureField(
-                    "Confirme sua senha",
-                    text: $viewModel.passwordConfirmation
-                )
-                .textContentType(.newPassword)
-            } header: {
-                Text("Acesso")
-            } footer: {
-                Text("A senha deve ter pelo menos 8 caracteres.")
-            }
-
-            if let errorMessage = viewModel.errorMessage {
-                Section {
-                    Text(errorMessage)
-                        .foregroundStyle(AppColors.error)
-                        .accessibilityLabel(
-                            "Erro: \(errorMessage)"
-                        )
-                }
-            }
-
-            Section {
-                Button {
-                    Task {
-                        if let user = await viewModel.register() {
-                            onRegistrationCompleted(user)
-                        }
-                    }
-                } label: {
-                    HStack {
-                        Spacer()
-
-                        if viewModel.isLoading {
-                            ProgressView()
-                        } else {
-                            Text("Criar conta")
-                                .fontWeight(.semibold)
-                        }
-
-                        Spacer()
-                    }
-                }
-            }
+        )
+        .navigationDestination(
+            isPresented: $showsProfile
+        ) {
+            RegistrationProfileView(
+                viewModel: viewModel,
+                onRegistrationCompleted:
+                    onRegistrationCompleted
+            )
         }
-        .navigationTitle("Criar conta")
-        .navigationBarTitleDisplayMode(.inline)
-        .disabled(viewModel.isLoading)
     }
 }
 
-#Preview {
+#Preview("Participante") {
     NavigationStack {
-        RegistrationView()
+        RegistrationView(
+            accountType: .attendee
+        )
+    }
+}
+
+#Preview("Divulgador") {
+    NavigationStack {
+        RegistrationView(
+            accountType: .promoter,
+            promoterPlan: .free
+        )
     }
 }

@@ -201,6 +201,7 @@ struct LoginView: View {
             }
             .padding(.horizontal, AppSpacing.extraLarge)
         }
+        .scrollBounceBehavior(.basedOnSize)
         .scrollDismissesKeyboard(.interactively)
         .disabled(viewModel.isLoading)
     }

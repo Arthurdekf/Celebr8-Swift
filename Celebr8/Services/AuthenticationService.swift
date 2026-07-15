@@ -9,15 +9,15 @@ import FirebaseAuth
 
 final class AuthenticationService {
     private let auth: Auth
-
+    
     init(auth: Auth = Auth.auth()) {
         self.auth = auth
     }
-
+    
     var currentUserID: String? {
         auth.currentUser?.uid
     }
-
+    
     func createAccount(
         email: String,
         password: String
@@ -26,10 +26,10 @@ final class AuthenticationService {
             withEmail: email,
             password: password
         )
-
+        
         return result.user.uid
     }
-
+    
     func signIn(
         email: String,
         password: String
@@ -38,23 +38,23 @@ final class AuthenticationService {
             withEmail: email,
             password: password
         )
-
+        
         return result.user.uid
     }
-
+    
     func sendPasswordReset(to email: String) async throws {
         try await auth.sendPasswordReset(withEmail: email)
     }
-
+    
     func signOut() throws {
         try auth.signOut()
     }
-
+    
     func deleteCurrentAccount() async throws {
         guard let user = auth.currentUser else {
             return
         }
-
+        
         try await user.delete()
     }
 }

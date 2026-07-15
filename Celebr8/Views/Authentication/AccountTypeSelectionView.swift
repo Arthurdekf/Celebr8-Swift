@@ -10,33 +10,33 @@ import SwiftUI
 @MainActor
 struct AccountTypeSelectionView: View {
     @State private var selectedAccountType: AccountType?
-
+    
     private let onContinue: (AccountType) -> Void
-
+    
     init(
         onContinue: @escaping (AccountType) -> Void
     ) {
         self.onContinue = onContinue
     }
-
+    
     var body: some View {
         ScrollView {
             VStack(spacing: AppSpacing.extraLarge) {
                 BrandLogo(size: 44)
-
+                
                 VStack(spacing: AppSpacing.small) {
                     Text("Como você quer usar o Celebr8?")
                         .font(.title2)
                         .fontWeight(.semibold)
                         .multilineTextAlignment(.center)
-
+                    
                     Text(
                         "Escolha o tipo de perfil que melhor representa você."
                     )
                     .foregroundStyle(AppColors.secondaryText)
                     .multilineTextAlignment(.center)
                 }
-
+                
                 VStack(spacing: AppSpacing.medium) {
                     AccountTypeCard(
                         title: "Participante",
@@ -50,7 +50,7 @@ struct AccountTypeSelectionView: View {
                             selectedAccountType = .attendee
                         }
                     }
-
+                    
                     AccountTypeCard(
                         title: "Divulgador",
                         description:
@@ -64,7 +64,7 @@ struct AccountTypeSelectionView: View {
                         }
                     }
                 }
-
+                
                 if selectedAccountType == .promoter {
                     Label(
                         "O perfil de divulgador é destinado a pessoas ou organizações que promovem eventos.",
@@ -74,12 +74,12 @@ struct AccountTypeSelectionView: View {
                     .foregroundStyle(AppColors.secondaryText)
                     .transition(.opacity)
                 }
-
+                
                 Button {
                     guard let selectedAccountType else {
                         return
                     }
-
+                    
                     onContinue(selectedAccountType)
                 } label: {
                     Text("Continuar")
@@ -93,6 +93,7 @@ struct AccountTypeSelectionView: View {
             .padding(.horizontal, AppSpacing.extraLarge)
             .padding(.vertical, AppSpacing.section)
         }
+        .scrollBounceBehavior(.basedOnSize)
         .navigationTitle("Tipo de perfil")
         .navigationBarTitleDisplayMode(.inline)
     }
@@ -104,7 +105,7 @@ private struct AccountTypeCard: View {
     let emoji: String
     let isSelected: Bool
     let action: () -> Void
-
+    
     var body: some View {
         Button(action: action) {
             HStack(spacing: AppSpacing.medium) {
@@ -115,14 +116,14 @@ private struct AccountTypeCard: View {
                         height: AppSpacing.extraSpacious
                     )
                     .accessibilityHidden(true)
-
+                
                 VStack(
                     alignment: .leading,
                     spacing: AppSpacing.extraSmall
                 ) {
                     Text(title)
                         .font(.headline)
-
+                    
                     Text(description)
                         .font(.subheadline)
                         .foregroundStyle(
@@ -130,13 +131,13 @@ private struct AccountTypeCard: View {
                         )
                         .multilineTextAlignment(.leading)
                 }
-
+                
                 Spacer()
-
+                
                 Image(
                     systemName: isSelected
-                        ? "checkmark.circle.fill"
-                        : "circle"
+                    ? "checkmark.circle.fill"
+                    : "circle"
                 )
                 .font(.title3)
             }
@@ -156,8 +157,8 @@ private struct AccountTypeCard: View {
                 )
                 .stroke(
                     isSelected
-                        ? AppColors.brand
-                        : AppColors.separator,
+                    ? AppColors.brand
+                    : AppColors.separator,
                     lineWidth: isSelected ? 2 : 1
                 )
             }
@@ -165,8 +166,8 @@ private struct AccountTypeCard: View {
         .buttonStyle(.plain)
         .foregroundStyle(
             isSelected
-                ? AppColors.brand
-                : AppColors.primaryText
+            ? AppColors.brand
+            : AppColors.primaryText
         )
         .accessibilityAddTraits(
             isSelected ? .isSelected : []

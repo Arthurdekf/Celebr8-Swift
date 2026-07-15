@@ -19,14 +19,15 @@ struct BrandLogo: View {
     }
 
     var body: some View {
-        HStack(alignment: .firstTextBaseline, spacing: 18) {
+        HStack(alignment: .firstTextBaseline, spacing: 9) {
             Text("Celebr")
                 .font(logoFont)
 
             Text("8")
                 .font(logoFont)
+                .fontWeight(.heavy)
                 .rotationEffect(
-                    .degrees(-20),
+                    .degrees(-14),
                     anchor: .bottomLeading
                 )
         }

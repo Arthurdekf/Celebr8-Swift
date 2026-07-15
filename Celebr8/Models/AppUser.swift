@@ -7,13 +7,16 @@
 
 import Foundation
 
-struct AppUser: Identifiable, Codable, Sendable {
+struct AppUser: Identifiable, Sendable {
     let id: String
-    var username: String
+    let username: String
     var displayName: String
     var bio: String?
     var photoURL: URL?
-    var accountType: AccountType
+    var gender: UserGender?
+    var birthDate: Date?
+    var favoriteCategoryIDs: [String]
+    let accountType: AccountType
     let createdAt: Date
     var updatedAt: Date
 }
